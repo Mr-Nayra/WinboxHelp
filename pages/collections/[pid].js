@@ -4,7 +4,14 @@ import styles from "../../styles/heirarchy.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
 
+import { useRouter } from "next/router";
+
+// http://localhost:3000/api/blogs?slug=get-started
+
 export default function Home() {
+  const router = useRouter();
+  const { pid } = router.query;
+
   return (
     <div>
       <Head>
@@ -31,7 +38,7 @@ export default function Home() {
             <div className={styles.division}>
               <img src="/LogoCutout.png" className={styles.boximage} />
               <div>
-                <h2 className={styles.divisionheading}>Get Started</h2>
+                <h2 className={styles.divisionheading}>{pid}</h2>
                 <div className={styles.aboutauthorcontainer}>
                   <img src="/LogoCutout.png" className={styles.boxLogo} />
                   <div>
