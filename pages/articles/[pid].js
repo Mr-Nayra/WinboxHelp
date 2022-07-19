@@ -6,27 +6,15 @@ import styles from "../../styles/blogPage.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
 import url from "../../util/url";
+import * as fs from "fs";
 
-export default function Home() {
+export default function Home(props) {
   const router = useRouter();
-  const { pid, index } = router.query;
-  const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState(props.myBlog);
 
   const createMarkup = (c) => {
     return { __html: c };
   };
-
-  useEffect(() => {
-    fetch(url + `api/blogs?slug=${pid}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((parsed) => {
-        if (parsed.collections) {
-          setArticle(parsed.collections[index - 1]);
-        }
-      });
-  }, [router.isReady, pid, index]);
 
   return (
     <div>
@@ -79,4 +67,25 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { pid: "01-Get Started", index: 1 } },
+      { params: { pid: "01-Get Started", index: 2 } },
+      { params: { pid: "01-Get Started", index: 3 } },
+      { params: { pid: "02-Add A New Inbox" } },
+    ],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { pid } = context.params;
+
+  let myBlog = await fs.promises.readFile(`data/${pid}.json`, "utf-8");
+  return {
+    props: { myBlog: JSON.parse(myBlog).collections[0] },
+  };
 }

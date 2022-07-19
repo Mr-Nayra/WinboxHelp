@@ -6,19 +6,10 @@ import BoxArrow from "./Icons/Box&Arrow";
 import Logo from "./Icons/Logo";
 import url from "../util/url";
 import IndexBlock from "../components/indexBlock/indexBlock";
+import * as fs from "fs";
 
-export default function Home() {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    fetch(url + "api/getblog")
-      .then((res) => {
-        return res.json();
-      })
-      .then((parsed) => {
-        setBlogs(parsed);
-      });
-  }, []);
+export default function Home(props) {
+  const [blogs, setBlogs] = useState(props.myBlogs);
 
   return (
     <div>
@@ -55,4 +46,19 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  let data = await fs.promises.readdir("data");
+  let allBlogs = [];
+  let myfile;
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i];
+    myfile = await fs.promises.readFile(`data/${item}`);
+    allBlogs.push(JSON.parse(myfile));
+  }
+
+  return {
+    props: { myBlogs: allBlogs },
+  };
 }

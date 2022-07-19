@@ -5,28 +5,27 @@ import Head from "next/head";
 import styles from "../../styles/heirarchy.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
-import url from "../../util/url";
 import CollectionBlock from "../../components/collectionBlock/collectionBlock";
+import * as fs from "fs";
 
-let collections = "";
-
-export default function Home() {
+export default function Home(props) {
   const router = useRouter();
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(props.myBlog.collections);
+  let collections = props.myBlog;
 
-  useEffect(() => {
-    if (!router.isReady) return;
-    const { pid } = router.query;
-
-    fetch(url + `api/blogs?slug=${pid}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((parsed) => {
-        collections = parsed;
-        setArticles(parsed.collections);
-      });
-  }, [router.isReady]);
+  // useEffect(() => {
+  //   if (!router.isReady) return;
+  //   const { pid } = router.query;
+  //
+  //   fetch(url + `api/blogs?slug=${pid}`)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((parsed) => {
+  //       collections = parsed;
+  //       setArticles(parsed.collections);
+  //     });
+  // }, [router.isReady]);
 
   return (
     <div>
@@ -90,4 +89,23 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { pid: "01-Get Started" } },
+      { params: { pid: "02-Add A New Inbox" } },
+    ],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { pid } = context.params;
+
+  let myBlog = await fs.promises.readFile(`data/${pid}.json`, "utf-8");
+  return {
+    props: { myBlog: JSON.parse(myBlog) },
+  };
 }
