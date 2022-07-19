@@ -1,21 +1,21 @@
 {
     "title": "Get Started",
-    "articles": 3,
     "writer": "Kushagra",
+    "fileName": "01-Get Started",
     "collections": [
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "What is Warmbox?",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         },
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "The Warmbox inbox network",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         },
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "How long does it take to warm-up?",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         }
     ]

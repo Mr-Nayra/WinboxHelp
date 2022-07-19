@@ -1,10 +1,25 @@
 import Head from "next/head";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+
 import styles from "../styles/Home.module.css";
 import BoxArrow from "./Icons/Box&Arrow";
 import Logo from "./Icons/Logo";
+import url from "../util/url";
+import IndexBlock from "../components/indexBlock/indexBlock";
 
 export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetch(url + "api/getblog")
+      .then((res) => {
+        return res.json();
+      })
+      .then((parsed) => {
+        setBlogs(parsed);
+      });
+  }, []);
+
   return (
     <div>
       <Head>
@@ -27,51 +42,15 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.container}>
-          <a className={styles.box}>
-            <img src="/LogoCutout.png" className={styles.boximage} />
-            <div>
-              <h2 className={styles.boxHeading}>Get Started</h2>
-              <div className={styles.aboutauthorcontainer}>
-                <img src="/LogoCutout.png" className={styles.boxLogo} />
-                <div>
-                  <p>3 articles written in this collection</p>
-                  <p>
-                    <span> Written by </span>Arthur
-                  </p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a className={styles.box}>
-            <img src="/LogoCutout.png" className={styles.boximage} />
-            <div>
-              <h2 className={styles.boxHeading}>Get Started</h2>
-              <div className={styles.aboutauthorcontainer}>
-                <img src="/LogoCutout.png" className={styles.boxLogo} />
-                <div>
-                  <p>3 articles written in this collection</p>
-                  <p>
-                    <span> Written by </span>Arthur
-                  </p>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a className={styles.box}>
-            <img src="/LogoCutout.png" className={styles.boximage} />
-            <div>
-              <h2 className={styles.boxHeading}>Get Started</h2>
-              <div className={styles.aboutauthorcontainer}>
-                <img src="/LogoCutout.png" className={styles.boxLogo} />
-                <div>
-                  <p>3 articles written in this collection</p>
-                  <p>
-                    <span> Written by </span>Arthur
-                  </p>
-                </div>
-              </div>
-            </div>
-          </a>
+          {blogs.map((item) => (
+            <IndexBlock
+              fileName={item.fileName}
+              title={item.title}
+              articles={item.collections.length}
+              writer={item.writer}
+              key={item.title}
+            />
+          ))}
         </div>
       </main>
     </div>

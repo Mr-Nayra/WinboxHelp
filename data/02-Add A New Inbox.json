@@ -1,21 +1,31 @@
 {
     "title": "Add a new Inbox",
-    "articles": 17,
-    "writer": "Aryan",
+    "writer": "Kushagra",
+    "fileName": "02-Add A New Inbox",
     "collections": [
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "Add a new inbox",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         },
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "Select an Inbox provider",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         },
         {
-            "title": "Get Started",
-            "writenBy": "Aryan",
+            "title": "Add a gmail/gsuite inbox",
+            "writenBy": "Kushagra",
+            "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
+        },
+        {
+            "title": "Add an Inbox with SMTP",
+            "writenBy": "Kushagra",
+            "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
+        },
+        {
+            "title": "Issues with SMTP/IMAP",
+            "writenBy": "Kushagra",
             "content": "Warmbox is a plug&play SaaS that automates the email warm-up process to get cold emails delivered. How does it work? 📧 We send emails from your inbox 💌 Your emails automatically get removed from spam, opened, marked as favorite, and replied 🔥 Your inbox gets warm, and your deliverability increases 📭 Your cold emails don't land in spam anymore, and you reach your targets Through a collaborative tool, Warmbox helps teams to generate more value with cold emailing. Say farewell to spam and get up to +30% open rate. Improve your email deliverability and generate more value with cold emailing."
         }
     ]

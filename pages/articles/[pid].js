@@ -1,14 +1,28 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../../styles/blogPage.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
-
-import { useRouter } from "next/router";
+import url from "../../util/url";
 
 export default function Home() {
   const router = useRouter();
-  const { pid } = router.query;
+  const { pid, index } = router.query;
+  const [article, setArticle] = useState([]);
+
+  useEffect(() => {
+    fetch(url + `api/blogs?slug=${pid}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((parsed) => {
+        if (parsed.collections) {
+          setArticle(parsed.collections[index - 1]);
+        }
+      });
+  }, [router.isReady, pid, index]);
 
   return (
     <div>
@@ -31,22 +45,27 @@ export default function Home() {
       </header>
 
       <main className={styles.main}>
+        {/* <nav>
+          <Link href="/">All Collections</Link> >
+          <Link href=`/Article/``
+        </nav> */}
         <div className={styles.container}>
           <div className={styles.container2}>
             <div className={styles.division}>
               <div>
-                <h2 className={styles.divisionheading}>{pid}</h2>
+                <h2 className={styles.divisionheading}>{article.title}</h2>
                 <div className={styles.aboutauthorcontainer}>
                   <img src="/LogoCutout.png" className={styles.boxLogo} />
                   <div>
-                    <p>3 articles written in this collection</p>
                     <p>
-                      <span> Written by </span>Arthur
+                      <span> Written by </span>
+                      {article.writenBy}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
+            <p>{article.content}</p>
           </div>
         </div>
       </main>
