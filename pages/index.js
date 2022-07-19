@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import BoxArrow from "./Icons/Box&Arrow";
 import Logo from "./Icons/Logo";
-import url from "../util/url";
 import IndexBlock from "../components/indexBlock/indexBlock";
 import * as fs from "fs";
 

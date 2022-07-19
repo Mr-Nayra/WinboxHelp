@@ -5,12 +5,15 @@ import Head from "next/head";
 import styles from "../../styles/blogPage.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
-import url from "../../util/url";
 import * as fs from "fs";
 
 export default function Home(props) {
   const router = useRouter();
   const [article, setArticle] = useState(props.myBlog);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+  }, [router.isReady]);
 
   const createMarkup = (c) => {
     return { __html: c };
@@ -37,21 +40,19 @@ export default function Home(props) {
       </header>
 
       <main className={styles.main}>
-        {/* <nav>
-          <Link href="/">All Collections</Link> >
-          <Link href=`/Article/``
-        </nav> */}
         <div className={styles.container}>
           <div className={styles.container2}>
             <div className={styles.division}>
               <div>
-                <h2 className={styles.divisionheading}>{article.title}</h2>
+                <h2 className={styles.divisionheading}>
+                  {article && article.title}
+                </h2>
                 <div className={styles.aboutauthorcontainer}>
                   <img src="/LogoCutout.png" className={styles.boxLogo} />
                   <div>
                     <p>
                       <span> Written by </span>
-                      {article.writenBy}
+                      {article && article.writenBy}
                     </p>
                   </div>
                 </div>

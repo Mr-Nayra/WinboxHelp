@@ -10,22 +10,12 @@ import * as fs from "fs";
 
 export default function Home(props) {
   const router = useRouter();
-  const [articles, setArticles] = useState(props.myBlog.collections);
+  const [articles, setArticles] = useState(props.collections);
   let collections = props.myBlog;
 
-  // useEffect(() => {
-  //   if (!router.isReady) return;
-  //   const { pid } = router.query;
-  //
-  //   fetch(url + `api/blogs?slug=${pid}`)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((parsed) => {
-  //       collections = parsed;
-  //       setArticles(parsed.collections);
-  //     });
-  // }, [router.isReady]);
+  useEffect(() => {
+    if (!router.isReady) return;
+  }, [router.isReady]);
 
   return (
     <div>
@@ -53,7 +43,9 @@ export default function Home(props) {
             <div className={styles.division}>
               <img src="/LogoCutout.png" className={styles.boximage} />
               <div>
-                <h2 className={styles.divisionheading}>{collections.title}</h2>
+                <h2 className={styles.divisionheading}>
+                  {collections && collections.title}
+                </h2>
                 <div className={styles.aboutauthorcontainer}>
                   <img src="/LogoCutout.png" className={styles.boxLogo} />
                   <div>
@@ -63,7 +55,7 @@ export default function Home(props) {
                     </p>
                     <p>
                       <span> Written by </span>
-                      {collections.writer}
+                      {collections && collections.writer}
                     </p>
                   </div>
                 </div>
@@ -105,7 +97,8 @@ export async function getStaticProps(context) {
   const { pid } = context.params;
 
   let myBlog = await fs.promises.readFile(`data/${pid}.json`, "utf-8");
+  let blog = JSON.parse(myBlog);
   return {
-    props: { myBlog: JSON.parse(myBlog) },
+    props: { myBlog: blog, collections: blog.collections },
   };
 }
