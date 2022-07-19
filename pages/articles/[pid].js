@@ -12,6 +12,10 @@ export default function Home() {
   const { pid, index } = router.query;
   const [article, setArticle] = useState([]);
 
+  const createMarkup = (c) => {
+    return { __html: c };
+  };
+
   useEffect(() => {
     fetch(url + `api/blogs?slug=${pid}`)
       .then((res) => {
@@ -65,7 +69,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <p>{article.content}</p>
+            {article && (
+              <div
+                dangerouslySetInnerHTML={createMarkup(article.content)}
+              ></div>
+            )}
           </div>
         </div>
       </main>
