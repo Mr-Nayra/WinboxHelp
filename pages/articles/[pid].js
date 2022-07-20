@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Head from "next/head";
+import Link from "next/link";
+
 import styles from "../../styles/blogPage.module.css";
 import BoxArrow from "../Icons/Box&Arrow";
 import Logo from "../Icons/Logo";
@@ -11,10 +13,6 @@ export default function Home(props) {
   const router = useRouter();
   const [article, setArticle] = useState(props.myBlog);
 
-  useEffect(() => {
-    if (!router.isReady) return;
-  }, [router.isReady]);
-
   const createMarkup = (c) => {
     return { __html: c };
   };
@@ -22,7 +20,7 @@ export default function Home(props) {
   return (
     <div>
       <Head>
-        <title>Winbox Help</title>
+        <title>Winbox Help Center</title>
         <meta name="description" content="Winbox help app" />
         <link rel="icon" href="/LogoCutout.png" />
       </Head>
@@ -40,6 +38,19 @@ export default function Home(props) {
       </header>
 
       <main className={styles.main}>
+        <div className={styles.navcont}>
+          <nav className={styles.nav}>
+            <Link href="/">
+              <a>All Collections</a>
+            </Link>
+            <p>&gt;</p>
+            <Link href={`/collections/${props.parent}`}>
+              <a>{props.parentName}</a>
+            </Link>
+            <p>&gt;</p>
+            <p>{article && article.title}</p>
+          </nav>
+        </div>
         <div className={styles.container}>
           <div className={styles.container2}>
             <div className={styles.division}>
@@ -71,22 +82,39 @@ export default function Home(props) {
 }
 
 export async function getStaticPaths() {
+  let data = await fs.promises.readdir("data");
+  let allBlogs = [];
+  let myfile;
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i];
+    myfile = await fs.promises.readFile(`data/${item}`);
+    let file = JSON.parse(myfile);
+    for (let j = 1; j <= file.collections.length; j++) {
+      let length = j >= 10 ? "" + j : "0" + j;
+      allBlogs.push({ params: { pid: file.fileName + length } });
+    }
+  }
+
   return {
-    paths: [
-      { params: { pid: "01-Get Started", index: 1 } },
-      { params: { pid: "01-Get Started", index: 2 } },
-      { params: { pid: "01-Get Started", index: 3 } },
-      { params: { pid: "02-Add A New Inbox" } },
-    ],
+    paths: allBlogs,
     fallback: true,
   };
 }
 
 export async function getStaticProps(context) {
   const { pid } = context.params;
+  const file = pid.slice(0, pid.length - 2);
+  const data = pid.slice(pid.length - 2, pid.length);
 
-  let myBlog = await fs.promises.readFile(`data/${pid}.json`, "utf-8");
+  let myBlog = await fs.promises.readFile(`data/${file}.json`, "utf-8");
+  const blogparent = JSON.parse(myBlog);
+  console.log(blogparent.fileName);
+
   return {
-    props: { myBlog: JSON.parse(myBlog).collections[0] },
+    props: {
+      myBlog: blogparent.collections[data - 1],
+      parent: blogparent.fileName,
+      parentName: blogparent.title,
+    },
   };
 }

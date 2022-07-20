@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Script from "next/script";
 
 import styles from "../styles/Home.module.css";
 import BoxArrow from "./Icons/Box&Arrow";
@@ -13,10 +14,18 @@ export default function Home(props) {
   return (
     <div>
       <Head>
-        <title>Winbox Help</title>
+        <title>Winbox Help Center</title>
         <meta name="description" content="Winbox help app" />
         <link rel="icon" href="/LogoCutout.png" />
       </Head>
+      <Script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></Script>
+      <Script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></Script>
 
       <header className={styles.header}>
         <div className={styles.container}>
@@ -39,6 +48,7 @@ export default function Home(props) {
               articles={item.collections.length}
               writer={item.writer}
               key={item.title}
+              icon={item.icon}
             />
           ))}
         </div>

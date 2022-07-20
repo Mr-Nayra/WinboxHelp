@@ -5,7 +5,11 @@ import styles from "./collectionBlock.module.css";
 
 const CollectionBlock = (props) => {
   return (
-    <Link href={`/articles/${props.fileName}?index=${props.index}`}>
+    <Link
+      href={`/articles/${props.fileName}${
+        props.index < 10 ? "0" + props.index : props.index
+      }`}
+    >
       <a className={styles.box}>
         <div>
           <h2 className={styles.boxHeading}>{props.title}</h2>

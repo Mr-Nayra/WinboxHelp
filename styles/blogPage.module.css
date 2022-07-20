@@ -36,7 +36,37 @@
     background-color: #f3f5f7;
     padding: 25px 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #f3f5f7;
+    font-size: 12px;
+}
+
+.navcont {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 100%;
+    width: 900px;
+    margin: 0px 40px 20px 35px;
+}
+
+.nav a {
+    color: #4f5e6b;
+    margin: 0 5px;
+}
+
+.nav a:hover {
+    color: #3a3c4c;
+}
+
+.nav p {
+    color: #8f919d;
+    margin: 0 5px;
 }
 
 .container2 {

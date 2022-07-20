@@ -16,8 +16,14 @@
     overflow: hidden;
     width: 100%;
     display: flex;
+    color: #0415aa;
     align-items: center;
     outline: none;
+}
+
+.box:hover {
+    background-color: #f9f9f9;
+    color: #051284;
     box-shadow: 0 3px 8px 0 rgb(0 0 0 / 3%);
     transition: border .15s linear, transform .15s linear, background-color .15s linear, box-shadow .15s linear, opacity .15s linear;
 }
@@ -30,7 +36,6 @@
 
 .boxHeading {
     font-size: 18px;
-    color: #0415aa;
     font-weight: 400;
 }
 

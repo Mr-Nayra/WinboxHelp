@@ -6,7 +6,9 @@ const indexBlock = (props) => {
   return (
     <Link href={`/collections/${props.fileName}`}>
       <a className={styles.box}>
-        <img src="/LogoCutout.png" className={styles.boximage} />
+        <div className={styles.boximage}>
+          <ion-icon name={props.icon}></ion-icon>
+        </div>
         <div>
           <h2 className={styles.boxHeading}>{props.title}</h2>
           <div className={styles.aboutauthorcontainer}>

@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Script from "next/script";
 
 import Head from "next/head";
 import styles from "../../styles/heirarchy.module.css";
@@ -13,17 +15,21 @@ export default function Home(props) {
   const [articles, setArticles] = useState(props.collections);
   let collections = props.myBlog;
 
-  useEffect(() => {
-    if (!router.isReady) return;
-  }, [router.isReady]);
-
   return (
     <div>
       <Head>
-        <title>Winbox Help</title>
+        <title>Winbox Help Center</title>
         <meta name="description" content="Winbox help app" />
         <link rel="icon" href="/LogoCutout.png" />
       </Head>
+      <Script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></Script>
+      <Script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></Script>
 
       <header className={styles.header}>
         <div className={styles.container}>
@@ -38,10 +44,21 @@ export default function Home(props) {
       </header>
 
       <main className={styles.main}>
+        <div className={styles.navcont}>
+          <nav className={styles.nav}>
+            <Link href="/">
+              <a>All Collections</a>
+            </Link>
+            <p>&gt;</p>
+            <p>{collections && collections.title}</p>
+          </nav>
+        </div>
         <div className={styles.container}>
           <div className={styles.container2}>
             <div className={styles.division}>
-              <img src="/LogoCutout.png" className={styles.boximage} />
+              <div className={styles.boximage}>
+                <ion-icon name={collections && collections.icon}></ion-icon>
+              </div>
               <div>
                 <h2 className={styles.divisionheading}>
                   {collections && collections.title}
@@ -84,11 +101,12 @@ export default function Home(props) {
 }
 
 export async function getStaticPaths() {
+  let data = await fs.promises.readdir("data");
+  data = data.map((item) => {
+    return { params: { pid: item.split(".")[0] } };
+  });
   return {
-    paths: [
-      { params: { pid: "01-Get Started" } },
-      { params: { pid: "02-Add A New Inbox" } },
-    ],
+    paths: data,
     fallback: true,
   };
 }
