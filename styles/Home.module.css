@@ -18,6 +18,7 @@
 
 .headerLink {
   display: flex;
+  text-decoration: none;
   align-items: center;
   color: white;
 }
