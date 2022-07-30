@@ -159,3 +159,21 @@
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: 480px) {
+    .container {
+        margin: 0 20px;
+    }
+
+    .main {
+        padding: 25px 10px;
+    }
+
+    .container2 {
+        padding: 20px;
+    }
+
+    .division {
+        padding: 20px;
+    }
+}
