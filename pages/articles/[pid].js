@@ -108,7 +108,6 @@ export async function getStaticProps(context) {
 
   let myBlog = await fs.promises.readFile(`data/${file}.json`, "utf-8");
   const blogparent = JSON.parse(myBlog);
-  console.log(blogparent.fileName);
 
   return {
     props: {

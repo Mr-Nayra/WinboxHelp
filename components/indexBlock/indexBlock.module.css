@@ -59,3 +59,21 @@
 .aboutauthorcontainer p span {
     color: #8f919d;
 }
+
+@media (max-width: 480px) {
+    .box {
+        padding: 10px 20px;
+    }
+
+    .boximage {
+        margin-right: 20px;
+    }
+
+    .boxHeading {
+        font-size: 16px;
+    }
+
+    .aboutauthorcontainer p {
+        font-size: 10px;
+    }
+}
