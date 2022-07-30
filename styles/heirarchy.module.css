@@ -171,4 +171,12 @@
     .division {
         padding: 20px;
     }
+
+    .divisionheading {
+        font-size: 24px;
+    }
+
+    .aboutauthorcontainer p {
+        font-size: 10px;
+    }
 }

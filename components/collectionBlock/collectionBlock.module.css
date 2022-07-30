@@ -60,3 +60,13 @@
 .aboutauthorcontainer p span {
     color: #8f919d;
 }
+
+@media (max-width: 480px) {
+    .boxHeading {
+        font-size: 16px;
+    }
+
+    .aboutauthorcontainer p {
+        font-size: 10px;
+    }
+}
